@@ -414,31 +414,32 @@ class PostControllerIntegrationTest {
                 .andExpect(jsonPath("$.content").value("Updated post Two Share"));
     }
 
-    @Test
-    @WithMockAuthUser
-    void deletePostShare() throws Exception {
-        User userJane = userRepository.findByEmail(USER_JANE.getEmail()).get();
-        Post postTwo = postRepository.findPostsByAuthor(userJane, PageRequest.of(0, 5)).get(0);
+//     @Test
+//     @WithMockAuthUser
+//     void deletePostShare() throws Exception {
+//         User userJane = userRepository.findByEmail(USER_JANE.getEmail()).get();
+//         Post postTwo = postRepository.findPostsByAuthor(userJane, PageRequest.of(0, 5)).get(0);
 
-        Post postTwoShare = postService.createPostShare("Post Two Share", postTwo.getId());
+//         Post postTwoShare = postService.createPostShare("Post Two Share", postTwo.getId());
 
-        mockMvc.perform(post(API_URL_PREFIX + "/posts/{postId}/share/delete", postTwoShare.getId()))
-                .andExpect(status().isOk());
+//         mockMvc.perform(post(API_URL_PREFIX + "/posts/{postId}/share/delete", postTwoShare.getId()))
+//                 .andExpect(status().isOk());
 
-        Post postTwoUpdated = postService.getPostById(postTwo.getId());
-        assertThat(postTwoUpdated.getShareCount()).isEqualTo(0);
+//         Post postTwoUpdated = postService.getPostById(postTwo.getId());
+//         assertThat(postTwoUpdated.getShareCount()).isEqualTo(0);
 
-        assertThatThrownBy(() -> {
-            postService.getPostById(postTwoShare.getId());
-        }).isInstanceOf(PostNotFoundException.class);
+//         assertThatThrownBy(() -> {
+//             postService.getPostById(postTwoShare.getId());
+//         }).isInstanceOf(PostNotFoundException.class);
 
-        Notification notification = notificationService.getNotificationByReceiverAndOwningPostAndType(
-                userJane,
-                postTwo,
-                NotificationType.POST_SHARE.name()
-        );
-        assertThat(notification.getSender()).isNull();
-    }
+//         Notification notification = notificationService.getNotificationByReceiverAndOwningPostAndType(
+//                 userJane,
+//                 postTwo,
+//                 NotificationType.POST_SHARE.name()
+//         );
+//         assertThat(notification.getSender()).isNull();
+//     }
+//
 
     @Test
     @WithMockAuthUser

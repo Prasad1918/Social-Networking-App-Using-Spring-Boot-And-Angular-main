@@ -3,6 +3,9 @@ package com.kpjunaid.mapper;
 import com.kpjunaid.entity.User;
 import com.kpjunaid.dto.UpdateUserInfoDto;
 import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface MapstructMapperUpdate {

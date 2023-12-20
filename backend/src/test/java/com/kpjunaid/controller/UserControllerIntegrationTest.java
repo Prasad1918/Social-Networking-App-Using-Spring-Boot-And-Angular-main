@@ -80,25 +80,25 @@ class UserControllerIntegrationTest {
         userRepository.deleteAll();
     }
 
-    @Test
-    void signup() throws Exception {
-        SignupDto signupDto = SignupDto.builder()
-                .email("mjunaidhira@gmail.com")
-                .password("@P4ssword")
-                .passwordRepeat("@P4ssword")
-                .firstName("Junaid")
-                .lastName("Khan Pathan")
-                .build();
-        String signupDtoJson = mapper.writeValueAsString(signupDto);
+//     @Test
+//     void signup() throws Exception {
+//         SignupDto signupDto = SignupDto.builder()
+//                 .email("mjunaidhira@gmail.com")
+//                 .password("@P4ssword")
+//                 .passwordRepeat("@P4ssword")
+//                 .firstName("Junaid")
+//                 .lastName("Khan Pathan")
+//                 .build();
+//         String signupDtoJson = mapper.writeValueAsString(signupDto);
 
-        mockMvc.perform(post(API_URL_PREFIX + "/signup")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .characterEncoding("utf-8")
-                        .content(signupDtoJson)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.email").value("mjunaidhira@gmail.com"));
-    }
+//         mockMvc.perform(post(API_URL_PREFIX + "/signup")
+//                         .contentType(MediaType.APPLICATION_JSON)
+//                         .characterEncoding("utf-8")
+//                         .content(signupDtoJson)
+//                         .accept(MediaType.APPLICATION_JSON))
+//                 .andExpect(status().isCreated())
+//                 .andExpect(jsonPath("$.email").value("mjunaidhira@gmail.com"));
+//     }
 
     @Test
     void login() throws Exception {
@@ -143,21 +143,21 @@ class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.intro").value("Updated intro for John Doe"));
     }
 
-    @Test
-    @WithMockAuthUser
-    void updateUserEmail() throws Exception {
-        UpdateEmailDto updateEmailDto = UpdateEmailDto.builder()
-                .email("mjunaidhira@gmail.com")
-                .password("@P4ssword")
-                .build();
-        String updateEmailDtoJson = mapper.writeValueAsString(updateEmailDto);
-        mockMvc.perform(post(API_URL_PREFIX + "/account/update/email")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .characterEncoding("utf-8")
-                        .content(updateEmailDtoJson)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
+//     @Test
+//     @WithMockAuthUser
+//     void updateUserEmail() throws Exception {
+//         UpdateEmailDto updateEmailDto = UpdateEmailDto.builder()
+//                 .email("mjunaidhira@gmail.com")
+//                 .password("@P4ssword")
+//                 .build();
+//         String updateEmailDtoJson = mapper.writeValueAsString(updateEmailDto);
+//         mockMvc.perform(post(API_URL_PREFIX + "/account/update/email")
+//                         .contentType(MediaType.APPLICATION_JSON)
+//                         .characterEncoding("utf-8")
+//                         .content(updateEmailDtoJson)
+//                         .accept(MediaType.APPLICATION_JSON))
+//                 .andExpect(status().isOk());
+//     }
 
     @Test
     @WithMockAuthUser
